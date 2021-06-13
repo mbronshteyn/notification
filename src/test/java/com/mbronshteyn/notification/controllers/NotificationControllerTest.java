@@ -1,11 +1,16 @@
 package com.mbronshteyn.notification.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import io.restassured.RestAssured.*;
-import io.restassured.matcher.RestAssuredMatchers.*;
-import org.hamcrest.Matchers.*;
+import static io.restassured.RestAssured.given;
 
+@SpringBootTest
 class NotificationControllerTest {
+
+  @Test
+  public void givenUrl_whenSuccessOnGetsResponse() {
+    given().when().get("/notification/greeting").then().statusCode(200);
+  }
 
 }
