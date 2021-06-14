@@ -10,7 +10,7 @@ class NotificationControllerTest {
 
   @Test
   public void givenUrl_whenSuccessOnGetsResponse() {
-    given().when().get("/notification/greeting").then().statusCode(200);
+    given().when().get("/notifications").then().statusCode(200);
   }
 
 }
