@@ -5,24 +5,25 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.stream.Collectors;
 
 @RestController
 @Slf4j
 @RequestMapping("/notifications")
 public class NotificationController {
-  @GetMapping()
-  public ResponseEntity greeting(){
+
+  // TODO: temp endpoint, for testing
+  @GetMapping
+  public ResponseEntity get() {
     log.info("greeting called");
     return ResponseEntity.ok().body("hello world!!!");
   }
 
-  @PostMapping()
-  public ResponseEntity postMessage(Notification notification) {
+  @PostMapping
+  public ResponseEntity post(@RequestBody Notification notification) {
     return ResponseEntity.ok().build();
   }
-}
 
+}
