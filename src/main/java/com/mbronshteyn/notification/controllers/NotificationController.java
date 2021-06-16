@@ -32,6 +32,7 @@ public class NotificationController {
 
   @PostMapping
   public ResponseEntity post(@RequestBody Notification notification) {
+    service.sendMessage(notification);
     return ResponseEntity.ok().build();
   }
 }
