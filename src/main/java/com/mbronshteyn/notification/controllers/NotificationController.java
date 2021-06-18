@@ -1,6 +1,7 @@
 package com.mbronshteyn.notification.controllers;
 
 import com.mbronshteyn.notification.model.Notification;
+import com.mbronshteyn.notification.services.EmailService;
 import com.mbronshteyn.notification.services.NotificationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/notifications")
 public class NotificationController {
 
-  private NotificationService service;
+  private EmailService emailService;
 
   @Autowired
-  NotificationController(NotificationService notificationService) {
-    this.service = notificationService;
+  NotificationController(EmailService emailService) {
+    this.emailService = emailService;
   }
 
   // TODO: temp endpoint, for testing
@@ -31,9 +32,9 @@ public class NotificationController {
   }
 
   @PostMapping
-  public ResponseEntity post(@RequestBody Notification notification) {
+  public ResponseEntity post(@RequestBody Notification notification) throws Exception {
     log.info("Received {}", notification);
-    service.sendMessage(notification);
+    emailService.sendEmail();
     return ResponseEntity.ok().body(notification);
   }
 
