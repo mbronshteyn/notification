@@ -32,7 +32,18 @@ public class NotificationController {
 
   @PostMapping
   public ResponseEntity post(@RequestBody Notification notification) {
+    log.info("Received {}", notification);
     service.sendMessage(notification);
-    return ResponseEntity.ok().build();
+    return ResponseEntity.ok().body(notification);
+  }
+
+  @GetMapping("/json")
+  public Notification returnObjectInBrowser() {
+    Notification notification = new Notification();
+    notification.setTopic("hello message");
+    notification.setFrom("mike");
+    notification.setTopic("ellen");
+
+    return notification;
   }
 }
