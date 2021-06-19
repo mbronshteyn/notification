@@ -6,19 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.List;
-
 @Data
 @Builder
 @ToString
 @AllArgsConstructor
-@NoArgsConstructor
-public class Notification {
-  private String channel;
-  private String topic;
-  private String to;
-  private String from;
-  private String messageBody;
+public class Meeting {
   private String host;
-  private List<Meeting> meetingList;
+  private int attendeeCount;
 }

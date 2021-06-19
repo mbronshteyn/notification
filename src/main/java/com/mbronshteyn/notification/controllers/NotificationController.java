@@ -1,5 +1,6 @@
 package com.mbronshteyn.notification.controllers;
 
+import com.mbronshteyn.notification.model.Meeting;
 import com.mbronshteyn.notification.model.Notification;
 import com.mbronshteyn.notification.services.EmailService;
 import com.mbronshteyn.notification.services.NotificationService;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -41,9 +45,14 @@ public class NotificationController {
   @GetMapping("/json")
   public Notification returnObjectInBrowser() {
     Notification notification = new Notification();
+    notification.setTo("michael.bronshteyn@gmail.com");
     notification.setTopic("hello message");
     notification.setFrom("mike");
     notification.setTopic("ellen");
+    List<Meeting> meetingList = new ArrayList<>();
+    meetingList.add( Meeting.builder().host("Mike").build());
+    meetingList.add( Meeting.builder().host("Lena").build());
+    notification.setMeetingList(meetingList);
 
     return notification;
   }
