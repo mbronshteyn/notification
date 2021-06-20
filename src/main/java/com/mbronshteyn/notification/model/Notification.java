@@ -19,6 +19,6 @@ public class Notification {
   private String to;
   private String from;
   private String messageBody;
-  private String host;
+  private String user;
   private List<Meeting> meetingList;
 }
