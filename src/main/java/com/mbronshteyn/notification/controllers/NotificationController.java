@@ -37,9 +37,15 @@ public class NotificationController {
 
   @PostMapping
   public ResponseEntity post(@RequestBody Notification notification) throws Exception {
-    log.info("Received {}", notification);
+    log.info("post: received {}", notification);
     emailService.sendEmail(notification.getTo(), notification.getTopic());
     return ResponseEntity.ok().body(notification);
+  }
+
+  @PostMapping("/hello")
+  public ResponseEntity postHello(@RequestBody String msg) throws Exception {
+    log.info("postHello: received {}", msg);
+    return ResponseEntity.ok().body(String.format("<h1>Hello %s </h1", msg));
   }
 
   @GetMapping("/json")
