@@ -16,8 +16,6 @@ class NotificationControllerTest {
 
   @LocalServerPort private int port;
 
-  ObjectMapper objectMapper = new ObjectMapper();
-
   @Test
   public void testGetMessage() {
     given().port(this.port).when().get("/notifications").then().statusCode(200);
