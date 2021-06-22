@@ -25,7 +25,10 @@ class NotificationControllerTest {
   public void testAdd() throws Exception {
 
     Notification notification =
-        Notification.builder().to("mike").messageBody("test message").build();
+        Notification.builder()
+                .to("mike")
+                .topic("test topic")
+                .messageBody("test message").build();
 
     // Normal use case - add successful
     given()
