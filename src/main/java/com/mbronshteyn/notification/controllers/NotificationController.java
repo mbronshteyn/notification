@@ -7,6 +7,7 @@ import com.mbronshteyn.notification.services.NotificationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,12 +41,6 @@ public class NotificationController {
     log.info("post: received {}", notification);
     emailService.sendEmail(notification.getTo(), notification.getTopic());
     return ResponseEntity.ok().body(notification);
-  }
-
-  @PostMapping("/hello")
-  public ResponseEntity postHello(@RequestBody String msg) throws Exception {
-    log.info("postHello: received {}", msg);
-    return ResponseEntity.ok().body(String.format("<h1>Hello %s </h1", msg));
   }
 
   @GetMapping("/json")
