@@ -1,6 +1,8 @@
 package com.mbronshteyn.notification.controllers;
 
+import com.mbronshteyn.notification.model.Meeting;
 import com.mbronshteyn.notification.model.Notification;
+import com.mbronshteyn.notification.services.EmailService;
 import com.mbronshteyn.notification.services.NotificationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +13,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @Slf4j
 @RequestMapping("/notifications")
 public class NotificationController {
 
-  private NotificationService service;
+  private EmailService emailService;
 
   @Autowired
-  NotificationController(NotificationService notificationService) {
-    this.service = notificationService;
+  NotificationController(EmailService emailService) {
+    this.emailService = emailService;
   }
 
   // TODO: temp endpoint, for testing
@@ -31,7 +36,30 @@ public class NotificationController {
   }
 
   @PostMapping
-  public ResponseEntity post(@RequestBody Notification notification) {
-    return ResponseEntity.ok().build();
+  public ResponseEntity post(@RequestBody Notification notification) throws Exception {
+    log.info("post: received {}", notification);
+    emailService.sendEmail(notification.getTo(), notification.getTopic());
+    return ResponseEntity.ok().body(notification);
+  }
+
+  @PostMapping("/hello")
+  public ResponseEntity postHello(@RequestBody String msg) throws Exception {
+    log.info("postHello: received {}", msg);
+    return ResponseEntity.ok().body(String.format("<h1>Hello %s </h1", msg));
+  }
+
+  @GetMapping("/json")
+  public Notification returnObjectInBrowser() {
+    Notification notification = new Notification();
+    notification.setTo("michael.bronshteyn@gmail.com");
+    notification.setTopic("hello message");
+    notification.setFrom("mike");
+    notification.setTopic("ellen");
+    List<Meeting> meetingList = new ArrayList<>();
+    meetingList.add( Meeting.builder().host("Mike").build());
+    meetingList.add( Meeting.builder().host("Lena").build());
+    notification.setMeetingList(meetingList);
+
+    return notification;
   }
 }

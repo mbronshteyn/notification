@@ -1,14 +1,24 @@
 package com.mbronshteyn.notification.model;
 
-import lombok.Value;
-import lombok.extern.slf4j.Slf4j;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-@Value
-@Slf4j
+import java.util.List;
+
+@Data
+@Builder
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Notification {
   private String channel;
   private String topic;
   private String to;
   private String from;
   private String messageBody;
+  private String user;
+  private List<Meeting> meetingList;
 }
