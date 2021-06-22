@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "c81d77a7-1c44-4cc5-aee2-9002b7861d08",
+		"name": "Notification Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Greeting",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Get Json",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/notifications/json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"notifications",
+						"json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create notification",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"channel\": null,\n    \"topic\": \"hello world with meeting\",\n    \"to\": \"michael.bronshteyn@gmail.com\",\n    \"from\": \"mike\",\n    \"messageBody\": null,\n    \"host\": null,\n    \"meetingList\": [\n        {\n            \"host\": \"Mike\",\n            \"attendeeCount\": 0\n        },\n        {\n            \"host\": \"Lena\",\n            \"attendeeCount\": 0\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/notifications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"notifications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "hello",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"channel\": null,\n    \"topic\": \"hello world with meeting\",\n    \"to\": \"michael.bronshteyn@gmail.com\",\n    \"from\": \"mike\",\n    \"messageBody\": null,\n    \"host\": null,\n    \"meetingList\": [\n        {\n            \"host\": \"Mike\",\n            \"attendeeCount\": 0\n        },\n        {\n            \"host\": \"Lena\",\n            \"attendeeCount\": 0\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/notifications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"notifications"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
