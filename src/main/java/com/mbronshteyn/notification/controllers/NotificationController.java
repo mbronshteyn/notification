@@ -38,7 +38,7 @@ public class NotificationController {
   @PostMapping
   public ResponseEntity post(@RequestBody Notification notification) throws Exception {
     log.info("post: received {}", notification);
-    emailService.sendEmail(notification.getTo(), notification.getTopic());
+    emailService.sendEmail(notification);
     return ResponseEntity.ok().body(notification);
   }
 

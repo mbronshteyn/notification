@@ -1,5 +1,6 @@
 package com.mbronshteyn.notification.services;
 
+import com.mbronshteyn.notification.model.Notification;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,14 +23,14 @@ public class EmailService {
   @Autowired JavaMailSender mailSender;
 
   @Async
-  public void sendEmail(String to, String subject)
+  public void sendEmail(Notification notification)
       throws UnsupportedEncodingException, MessagingException {
     MimeMessage message = mailSender.createMimeMessage();
     MimeMessageHelper helper = new MimeMessageHelper(message);
-    helper.setFrom(this.fromEmailAddress, "My Email Address");
-    helper.setTo(to);
-    helper.setSubject(subject);
-    helper.setText("<p>Hi there, this is a test email.</p>", true);
+    helper.setFrom(this.fromEmailAddress);
+    helper.setTo(notification.getTo());
+    helper.setSubject(notification.getTopic());
+    helper.setText(String.format("<p>%s</p>",notification.getMessageBody()), true);
     log.info("Sending email from {}", fromEmailAddress);
     mailSender.send(message);
   }
